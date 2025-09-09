@@ -1,163 +1,106 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lulu Roast Emoji Edition</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Comic Sans MS", cursive, sans-serif;
-      background: linear-gradient(135deg, #9333ea, #d946ef);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* 🎨 Motif Polkadot Lucu */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: radial-gradient(rgba(255,255,255,0.2) 8%, transparent 10%);
-      background-size: 40px 40px;
-      z-index: 0;
-    }
-
-    header {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 20px 0;
-      text-align: center;
-      z-index: 1;
-      text-shadow: 2px 2px rgba(0,0,0,0.3);
-    }
-
-    .card {
-      background: rgba(255,255,255,0.15);
-      padding: 20px;
-      border-radius: 20px;
-      width: 100%;
-      max-width: 450px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,.3);
-      z-index: 1;
-    }
-
-    .roast-box {
-      background: #fff;
-      color: #333;
-      padding: 16px;
-      border-radius: 16px;
-      font-size: 16px;
-      min-height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 10px rgba(0,0,0,.3);
-      animation: pop 0.4s ease;
-      text-align: center;
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.9); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    button {
-      margin: 6px 0;
-      padding: 12px;
-      border: none;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: bold;
-      background: #fff;
-      color: #9333ea;
-      cursor: pointer;
-      width: 100%;
-      transition: 0.2s;
-    }
-    button:hover {
-      background: #e9d5ff;
-    }
-
-    textarea {
-      width: 100%;
-      border-radius: 10px;
-      border: none;
-      padding: 10px;
-      font-size: 14px;
-      margin-top: 10px;
-      resize: none;
-    }
-
-    .small {
-      font-size: 13px;
-      margin-top: 8px;
-      opacity: 0.8;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roast Gemoy buat Lulu</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", "Comic Sans MS", cursive, sans-serif;
+    background: linear-gradient(135deg, #ffe4ec, #e0f7ff);
+    color: #4b5563;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    margin-bottom: 20px;
+    color: #ec4899;
+    font-size: 26px;
+    text-shadow: 1px 1px #fff;
+  }
+  #output {
+    min-height: 120px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 25px;
+    max-width: 700px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+  }
+  button {
+    background: #f9a8d4;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  button:hover {
+    background: #ec4899;
+    transform: scale(1.05);
+  }
+  button:active {
+    transform: scale(0.95);
+  }
+  .emoji {
+    font-size: 28px;
+  }
+</style>
 </head>
 <body>
-  <header>🤣 Lulu Roast – Emoji Edition</header>
-  <div class="card">
-    <div class="roast-box" id="roastBox">Klik tombol buat nge-roast Lulu</div>
-    <button id="randomBtn">🎲 Random Roast</button>
-    <textarea id="custom" placeholder="Lo mau bikin roast custom? ketik di sini..."></textarea>
-    <button id="sendBtn">✍️ Kirim Roast</button>
-    <p class="small">⚠️ Chill bro, ini cuma satir fun doang ✌️</p>
-  </div>
+  <h1>✨ Roast Gemoy buat Lulu ✨</h1>
+  <div id="output">Klik tombol gemes ini dulu yaa ⬇️</div>
+  <button onclick="generateRoast()"><span class="emoji">🐣💖</span> Kasih Pujian <span class="emoji">💖🐣</span></button>
 
-  <script>
-    const roastBox = document.getElementById("roastBox");
-    const randomBtn = document.getElementById("randomBtn");
-    const sendBtn = document.getElementById("sendBtn");
-    const custom = document.getElementById("custom");
+<script>
+  const roasts = [
+    "Lulu tuh rajin banget… rajin update story pas kerjaan numpuk 😗👌",
+    "Ngomongnya jelas sih… jelas bikin orang nanya ‘hah maksud lo apaan?’ 🐸",
+    "Kerjaan Lulu rapi… rapi di-save draft, lupa di-submit 🐒",
+    "Disiplin banget… disiplin telat kaya jam weker KW ⏰",
+    "Detail banget, typo aja dibahas kaya gosip artis 🌚",
+    "Bisa diandelin… kalo mau liat drama gratis tiap hari 🎬",
+    "Lulu tuh pinter nyusun… nyusun alasan kenapa belum kelar 🤡",
+    "Kasih masukan sih… tapi biasanya lebih mirip podcast receh 🎤",
+    "Konsisten banget… konsisten bikin orang tarik napas panjang 🧘‍♀️",
+    "Gampang nyambung sama orang… asal lagi ngomongin gosip 🐍",
+    "Produktif parah… produktif scroll TikTok 📱",
+    "Lulu selalu hadir… hadir pas foto bareng doang 📸",
+    "Rapat makin rame kalo ada Lulu… rame kayak warung pecel jam 12 🌶️",
+    "Suka bagi ide… ide absurd yang bikin semua orang freeze 🧊",
+    "Ada masalah? Tenang, Lulu cepet banget… cepet ngilang 🏃‍♀️💨",
+    "Aktif banget… aktif pura-pura sibuk 🙈",
+    "Perfeksionis banget… perfeksionis milih filter IG 📷",
+    "Humoris sih… tapi orang lain yang jadi bahan ketawanya 🤪",
+    "Fokus… ke notif HP, bukan kerjaan 🔔",
+    "Visioner banget… visinya ke mall, bukan ke masa depan 🛍️",
+    "Enerjik… energinya abis buat ngejulid 🐤",
+    "Selalu punya rencana… rencana kabur kalo deadline deket 🤯",
+    "Multi-tasking… bisa makan, scroll, sama ngeluh barengan 🍔📱😩",
+    "Ga toxic kok… toxicnya limited edition, sekali keluar chaos 🌋",
+    "Lulu tuh kayak wifi… kadang ada, kadang ilang, kadang bikin emosi 📡"
+  ];
 
-    const roasts = [
-      "Lulu tuh kalo bilang ‘gue sibuk’, artinya lagi sibuk mikirin alasan kenapa ga ngerjain.",
-      "Deadline sama Lulu itu bukan dikejar, tapi dianterin ke kuburan bareng mimpi-mimpinya.",
-      "Lo bayangin, Lulu tuh ibarat presentasi PPT: template bagus, isi kosong.",
-      "Produktifitas Lulu tuh kayak demo doang, rame di awal, hilang ga ada follow-up.",
-      "Ngarepin Lulu on time tuh sama aja kayak ngarepin TransJakarta lewat pas lo butuh banget.",
-      "Kalo drama Korea ada plot twist, drama Lulu ada excuse twist.",
-      "Lulu tuh vibes-nya kayak file .rar — isinya banyak janji, dibuka malah corrupted.",
-      "Ngajak Lulu belajar bareng? lebih gampang ngajarin kucing main Mobile Legends.",
-      "Lulu bilang ‘otw’? fix lo masih bisa mandi, makan, bahkan nonton season baru dulu.",
-      "Gue rasa jam produktif Lulu tuh timezone beda planet, bro."
-    ];
-
-    const emojis = ["😂", "🔥", "🙃", "💀", "🤡", "🥲", "🦥", "📉", "🐌", "🚩"];
-
-    function randomEmoji() {
-      return emojis[Math.floor(Math.random() * emojis.length)];
-    }
-
-    function showRoast(text) {
-      roastBox.textContent = text + " " + randomEmoji();
-      roastBox.style.animation = "none";
-      roastBox.offsetHeight; // reset animation
-      roastBox.style.animation = "pop 0.4s ease";
-    }
-
-    randomBtn.addEventListener("click", () => {
-      const pick = roasts[Math.floor(Math.random() * roasts.length)];
-      showRoast(pick);
-    });
-
-    sendBtn.addEventListener("click", () => {
-      const text = custom.value.trim();
-      if (!text) return alert("Isi dulu roast custom lo!");
-      showRoast("Anonim: " + text);
-      custom.value = "";
-    });
-  </script>
+  function generateRoast() {
+    const randomIndex = Math.floor(Math.random() * roasts.length);
+    const output = document.getElementById("output");
+    output.textContent = roasts[randomIndex];
+    output.style.transform = "scale(1.2)";
+    setTimeout(()=> output.style.transform = "scale(1)", 200);
+  }
+</script>
 </body>
 </html>
